@@ -1,14 +1,11 @@
-{% extends "/boot_base.html" %}
-
+{% extends "boot_base.html" %}
 <-- Super is used to inherit the etended html !-->
 {% block navbar %}
 {{ super() }}
 {% endblock %}
-
 {% block body %}
-<h3>Web tools</h3>
+<h3>data</h3>
 <p>{{ Webthings }}</p>
 <p>{{ Compthings }}</p>
 <p>{{ Netthings }}</p>
-
 {% endblock %}

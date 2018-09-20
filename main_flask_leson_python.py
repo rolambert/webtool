@@ -21,7 +21,7 @@ import doscmds as dc
 app = Flask(__name__)
 #Bootstrap
 bootstrap = Bootstrap(app)
-"""MYSQL configuration and initilization """
+#MYSQL configuration and initilization
 #SQLAlchemy
 basedir = os.path.abspath(os.path.dirname(__file__))
 #.format to insert user and password mysql://user:password@ip:port/database
@@ -34,10 +34,8 @@ The db object corelated to the database and comes with flask_sqlalchemy
 access and functionality of flask_sqlalchemy
 """
 
-
-"Routes and views"
 #route for the about device page
-@app.route('/Aboutdevice') #Decorator handlers event
+@app.route('/devicedata') #Decorator handlers event
 def deviceinfo(things=''):
     #Get the network info
     arp = dc.getARP()
@@ -50,6 +48,7 @@ def deviceinfo(things=''):
     machine is  %s ' % (user_agent, user_os) #the response
     Compstring= "Arp table is: {}".format(arp)
     Netstring= "Network information : {}".format(netinfo)
+    #this returns the extension of base html
     return render_template('extension_of-base.html',Webthings=Webstring\
     ,Compthings=Compstring, Netthings=Netstring)
 
@@ -77,7 +76,7 @@ class UserForm(Form):
 
 
 @app.route('/', methods=['GET','POST'])
-def user_example(name='new', user=': please register!'):
+def user_example(name='new', user=': please register'):
     form_name = name
     form_user = user
     user_form = UserForm()
