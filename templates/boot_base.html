@@ -1,6 +1,11 @@
 {% extends "bootstrap/base.html" %}
+
 {% import "bootstrap/wtf.html" as wtf %}
-{% block title %}Flasky{% endblock %}
+
+{% block title %}
+ {{ super() }}
+{% endblock %}
+
 {% block navbar %}
 <div class="navbar navbar-inverse" role="navigation">
   <div class="container">
@@ -12,15 +17,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">Flasky.</a>
+      <a class="navbar-brand" href="/">tools</a>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li><a href="/">Home</a></li>
-        <li><a href="/Aboutdevice">About device</a></li>
-        <li><a href="/redirect">Search</a></li>
-        <li><a href="/8light">8 Light</a></li>
-        <li><a href="/network">network</a></li>
+        <li><a href="/">home</a></li>
+        <li><a href="/devicedata">data</a></li>
+        <li><a href="/redirect">google</a></li>
       </ul>
     </div>
   </div>
@@ -28,21 +31,23 @@
 {% endblock %}
 
 {% block content %}
+
   <div class="container">
     <div class="page-header">
-      <h1>Hello {{ name }} User {{ user }}!</h1>
+      <h1>Hi {{ name }} user {{ user }}</h1>
+      <p> here you can log in or continue as guest</p>
     </div>
   </div>
+
   <div class="container">
     <div class="page-content">
-  <p><form class="form form-horizontal" method="post" role="form">
-  {{ form.hidden_tag() }}
-  {{ wtf.form_errors(form, hiddens="only") }}
-  {{ wtf.form_field(form.field1) }}
-  {{ wtf.form_field(form.field2) }}
-  {{ wtf.form_field(form.submit) }}
-</form></p>
-</div>
-</div>
-
+      <p>
+        <form class="form form-horizontal" method="post" role="form">
+          {{ form.hidden_tag() }}
+          {{ wtf.form_errors(form, hiddens="only") }}
+          {{ wtf.form_field(form.field1) }}
+          {{ wtf.form_field(form.field2) }}
+          {{ wtf.form_field(form.submit) }}
+        </form>
+      </p>
 {% endblock %}

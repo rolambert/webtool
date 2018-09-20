@@ -13,16 +13,18 @@ from flask_sqlalchemy import SQLAlchemy
 #Module used to hide my passwords from github
 import up_import as upi
 uspa = upi.log_me_in_local(r'C:\UPTemphold\up.txt')
+#Module  with local nmap cmds etc
+import doscmds as dc
 
 """Initilization of the application"""
 #App
 app = Flask(__name__)
 #Bootstrap
 bootstrap = Bootstrap(app)
-"""Data Using MYSQL"""
+#MYSQL configuration and initilization
 #SQLAlchemy
 basedir = os.path.abspath(os.path.dirname(__file__))
-#used .format to insert user and password mysql://user:password@ip:port/database
+#.format to insert user and password mysql://user:password@ip:port/database
 app.config['SQLALCHEMY_DATABASE_URI'] =\
 'mysql://{}:{}@{}:{}/{}'.format(uspa[0],uspa[1],uspa[2],uspa[3],uspa[4])
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
@@ -31,11 +33,11 @@ db = SQLAlchemy(app)
 The db object corelated to the database and comes with flask_sqlalchemy
 access and functionality of flask_sqlalchemy
 """
-#Routes and views
-@app.route('/Aboutdevice') #Decorator handlers event
+
+#route for the about device page
+@app.route('/devicedata') #Decorator handlers event
 def deviceinfo(things=''):
     #Get the network info
-    import doscmds as dc
     arp = dc.getARP()
     netinfo = "netinfo"
     #web browser information
@@ -46,6 +48,7 @@ def deviceinfo(things=''):
     machine is  %s ' % (user_agent, user_os) #the response
     Compstring= "Arp table is: {}".format(arp)
     Netstring= "Network information : {}".format(netinfo)
+    #this returns the extension of base html
     return render_template('extension_of-base.html',Webthings=Webstring\
     ,Compthings=Compstring, Netthings=Netstring)
 
@@ -61,8 +64,6 @@ def light():
     return redirect('http://8light.com')
 
 
-
-
 """
 variable
 """
@@ -75,15 +76,17 @@ class UserForm(Form):
 
 
 @app.route('/', methods=['GET','POST'])
-def user_example(name='new', user=': please register!'):
+def user_example(name='new', user=': please register'):
     form_name = name
     form_user = user
     user_form = UserForm()
 
 
     if user_form.validate_on_submit():
+        #set the form data to variable
         form_name = user_form.field1.data
         form_user = user_form.field2.data
+        #clear the form fields
         user_form.field1.data = ''
         user_form.field2.data = ''
 

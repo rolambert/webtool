@@ -1,14 +1,12 @@
-{% extends "base.html" %}
-{% block title %}Index{% endblock %}
-{% block head %}
-  {{ super() }}
-  <style>
-  </style>
-{% endblock %}
+{% extends "boot_base.html" %}
+<-- Super is used to inherit the etended html !-->
+
 {% block body %}
-<h1>Hello</h1>
+
+{% block navbar %}
+{{ super() }}
+{% endblock %}
 <p>{{ Webthings }}</p>
 <p>{{ Compthings }}</p>
 <p>{{ Netthings }}</p>
-
 {% endblock %}
