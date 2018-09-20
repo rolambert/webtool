@@ -24,7 +24,7 @@ bootstrap = Bootstrap(app)
 """MYSQL configuration and initilization """
 #SQLAlchemy
 basedir = os.path.abspath(os.path.dirname(__file__))
-#used .format to insert user and password mysql://user:password@ip:port/database
+#.format to insert user and password mysql://user:password@ip:port/database
 app.config['SQLALCHEMY_DATABASE_URI'] =\
 'mysql://{}:{}@{}:{}/{}'.format(uspa[0],uspa[1],uspa[2],uspa[3],uspa[4])
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
