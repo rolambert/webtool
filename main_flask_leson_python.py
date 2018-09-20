@@ -14,7 +14,7 @@ from flask_sqlalchemy import SQLAlchemy
 import up_import as upi
 uspa = upi.log_me_in_local(r'C:\UPTemphold\up.txt')
 
-"""Initilization"""
+"""Initilization of the application"""
 #App
 app = Flask(__name__)
 #Bootstrap
@@ -31,11 +31,10 @@ db = SQLAlchemy(app)
 The db object corelated to the database and comes with flask_sqlalchemy
 access and functionality of flask_sqlalchemy
 """
-
 #Routes and views
 @app.route('/Aboutdevice') #Decorator handlers event
 def deviceinfo(things=''):
-    #get the network info
+    #Get the network info
     import doscmds as dc
     arp = dc.getARP()
     netinfo = "netinfo"

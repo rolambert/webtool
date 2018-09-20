@@ -1,4 +1,4 @@
-#this module
+"Module reads local file for username/passwords"
 def log_me_in_local(fname):
     with open(fname) as f:
         content = f.readlines()
