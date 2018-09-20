@@ -13,13 +13,15 @@ from flask_sqlalchemy import SQLAlchemy
 #Module used to hide my passwords from github
 import up_import as upi
 uspa = upi.log_me_in_local(r'C:\UPTemphold\up.txt')
+#Module  with local nmap cmds etc
+import doscmds as dc
 
 """Initilization of the application"""
 #App
 app = Flask(__name__)
 #Bootstrap
 bootstrap = Bootstrap(app)
-"""Data Using MYSQL"""
+"""MYSQL configuration and initilization """
 #SQLAlchemy
 basedir = os.path.abspath(os.path.dirname(__file__))
 #used .format to insert user and password mysql://user:password@ip:port/database
@@ -31,11 +33,13 @@ db = SQLAlchemy(app)
 The db object corelated to the database and comes with flask_sqlalchemy
 access and functionality of flask_sqlalchemy
 """
-#Routes and views
+
+
+"Routes and views"
+#route for the about device page
 @app.route('/Aboutdevice') #Decorator handlers event
 def deviceinfo(things=''):
     #Get the network info
-    import doscmds as dc
     arp = dc.getARP()
     netinfo = "netinfo"
     #web browser information
