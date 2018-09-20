@@ -61,8 +61,6 @@ def light():
     return redirect('http://8light.com')
 
 
-
-
 """
 variable
 """
@@ -82,8 +80,10 @@ def user_example(name='new', user=': please register!'):
 
 
     if user_form.validate_on_submit():
+        #set the form data to variable
         form_name = user_form.field1.data
         form_user = user_form.field2.data
+        #clear the form fields
         user_form.field1.data = ''
         user_form.field2.data = ''
 
