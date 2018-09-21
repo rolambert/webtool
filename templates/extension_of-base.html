@@ -1,12 +1,25 @@
 {% extends "boot_base.html" %}
 <-- Super is used to inherit the etended html !-->
-
 {% block body %}
-
 {% block navbar %}
 {{ super() }}
 {% endblock %}
-<p>{{ Webthings }}</p>
-<p>{{ Compthings }}</p>
-<p>{{ Netthings }}</p>
+{% block content %}
+<div id=webcontent>
+  <!--  Its easy to loop through
+  vales from python with flask -->
+  {% for value in Webthings %}
+  <p>{{value}}</p>
+  {% endfor %}
+</div>
+<div id=Compcontent>
+  {% for value in Compthings %}
+  <p>{{value}}</p>
+  {% endfor %}
+</div>
+{% for value in Compthings %}
+<p>{{value}}</p>
+{% endfor %}
+<p>{{ Netstring }}</p>
+{% endblock %}
 {% endblock %}

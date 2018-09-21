@@ -37,9 +37,12 @@ access and functionality of flask_sqlalchemy
 #route for the about device page
 @app.route('/devicedata') #Decorator handlers event
 def deviceinfo(things=''):
-    #Get the network info
+    #Get the network info , enumerate ('1',data,'2')
     arp = dc.getARP()
-    netinfo = "netinfo"
+    netinfo = "Netinfo"
+    #enumerate creates a iterated list.
+    for idx, x in enumerate(arp):\
+    netinfo += "<br /> {}: {} ".format(idx,str(x))
     #web browser information
     user_agent = request.headers.get('User-Agent')
     #get the operating system information
@@ -47,10 +50,10 @@ def deviceinfo(things=''):
     Webstring = 'Computer Info! Your browser is %s \
     machine is  %s ' % (user_agent, user_os) #the response
     Compstring= "Arp table is: {}".format(arp)
-    Netstring= "Network information : {}".format(netinfo)
+    Netstring= "netinfo.split('b\'')"
     #this returns the extension of base html
     return render_template('extension_of-base.html',Webthings=Webstring\
-    ,Compthings=Compstring, Netthings=Netstring)
+    ,Compthings=arp, Netthings=Netstring)
 
 
 #keep the redirec view
